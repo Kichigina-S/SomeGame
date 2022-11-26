@@ -11,6 +11,7 @@ public class Essence {
     public int getHealthy() { return healthy; }
     public int[] getDamage() { return damage; }
 
+    // Конструктор Существа
     public Essence (int attack, int protect, int healthy, int[] damage) {
         this.attack = attack;
         this.protect = protect;
@@ -18,20 +19,24 @@ public class Essence {
         this.damage = damage;
     }
 
+    // Дефолтный конструктор
     public Essence () {
 
     }
 
+    // Установка рандомного значения Атаки или Защиты Существа
     public static int setAttackOrProtect() {
         int parameterAttackOrProtect = 1 + (int) ( Math.random() * 20 );
         return parameterAttackOrProtect;
     }
 
+    // Установка рандомного значения Здоровья Существа
     public static int setHealthy (int N) {
         int parameterHealthy = (int) ( Math.random() * (N + 1) );
         return parameterHealthy;
     }
 
+    // Установка значений Урона Существа
     public static int[] setDamage (int M, int N) {
         int[] arrayDamage = new int[N - M + 1];
         int value = M;
@@ -43,6 +48,7 @@ public class Essence {
         return arrayDamage;
     }
 
+    // Метод выполняет вывод инофрмации о Существе на экран
     public void printInfo(Essence essence) {
         System.out.println( "Some info about your essence: " +
                             "\nAttack: " + essence.getAttack() + 
@@ -55,6 +61,8 @@ public class Essence {
         System.out.println("\n");
     }
 
+    // Метод выполняет бросок кубика, в случае если выпадает 6 или 5, возвращается true 
+    // т.е. удар считается успешным
     private boolean throwCube() {
         int throwCube = 1 + (int) ( Math.random() * (6) );
             if (throwCube == 6 || throwCube == 5)
@@ -63,6 +71,7 @@ public class Essence {
             return false;
     }
 
+    // Метод выполняет проверку на положительное значение параметра Здоровья Существа
     public boolean checkHealthyEssence(Essence essence) {
         if (essence.healthy <= 0)
         return true;
@@ -70,6 +79,14 @@ public class Essence {
         return false;
     }
 
+    // Метод выполняет удар одним Существом другого. 
+    // essenceDefensive - защищающееся Существо, essenceAttacking - атакующее Существо.
+    // Удар можно выполнить только в случае, если здоровье Существа имеет положительное значение.
+    // Удар считается успешным, если хотя бы на одном из кубиков выпало 5 или 6.
+    // Кубик бросается N-раз, где N - это Модификатор атаки, который расчитывается в методе.
+    // Если Удар успешен, кубик больше не бросается, цикл for () завершается.
+    // Если Удар успешен, здоровье защищавшегося Существа уменьшается на одно из значений параметра Урон атакующего Существа.
+    // Выводится информация о совершении Удара и количестве нанесённого Урона.
     public void kickEssence(Essence essenceDefensive, Essence essenceAttacking) {
         if (checkHealthyEssence(essenceAttacking) == true || checkHealthyEssence(essenceDefensive) == true  ) {
             System.out.println("You'r fight is over! There is no one to kick.");

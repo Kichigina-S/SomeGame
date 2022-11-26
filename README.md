@@ -1,18 +1,10 @@
-## Getting Started
+## Some Game for Test Project
 
-Welcome to the VS Code Java world. Here is a guideline to help you get started to write Java code in Visual Studio Code.
+This project was made for Heads and Hands school. 
+Using this, you can make some Monster and Player, which could kick each other.
+Monster is usually a bad character, so only Player can heal himself. (Sorry, Monster!)
 
-## Folder Structure
+## How to use
 
-The workspace contains two folders by default, where:
-
-- `src`: the folder to maintain sources
-- `lib`: the folder to maintain dependencies
-
-Meanwhile, the compiled output files will be generated in the `bin` folder by default.
-
-> If you want to customize the folder structure, open `.vscode/settings.json` and update the related settings there.
-
-## Dependency Management
-
-The `JAVA PROJECTS` view allows you to manage your dependencies. More details can be found [here](https://github.com/microsoft/vscode-java-dependency#manage-dependencies).
+So, if you wanna make some kick, firstly you should make some Essence.
+Create your Player and use method setValuesToPlayer(), to fill our object with
