@@ -14,7 +14,7 @@ public class Monster extends Essence {
     }
 
     // Установка значений параметрам Монстра
-    public void setValuesToMonster (Monster testMonster, int N, int M) {
+    public void setValuesToMonster (Monster testMonster, int N, int M) throws Exception {
         super.attack = Essence.setAttackOrDefense();
         super.defense = Essence.setAttackOrDefense();
         super.health = Essence.setHealth(N);

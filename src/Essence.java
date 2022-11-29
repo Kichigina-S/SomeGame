@@ -25,14 +25,16 @@ public class Essence {
     }
 
     // Установка рандомного значения Атаки или Защиты Существа
-    public static int setAttackOrDefense() {
+    public static int setAttackOrDefense() throws Exception {
         int parameterAttackOrDefense = 1 + (int) ( Math.random() * 20 );
+        if (parameterAttackOrDefense > 20 || parameterAttackOrDefense < 1) throw new Exception("The parameter of Attack or Defense should be from 1...20.");
         return parameterAttackOrDefense;
     }
 
     // Установка рандомного значения Здоровья Существа
-    public static int setHealth (int N) {
+    public static int setHealth (int N) throws Exception {
         int parameterHealth = (int) ( Math.random() * (N + 1) );
+        if (parameterHealth > N || parameterHealth < 0) throw new Exception("The parameter of Health should be from 0..." + N + ".");
         return parameterHealth;
     }
 
@@ -41,7 +43,6 @@ public class Essence {
         int[] arrayDamage = new int[N - M + 1];
         int value = M;
         for (int i = 0; i < N - M + 1; i++) {
-
             arrayDamage[i] = value;
             value++;
         }
@@ -63,8 +64,9 @@ public class Essence {
 
     // Метод выполняет бросок кубика, в случае если выпадает 6 или 5, возвращается true 
     // т.е. удар считается успешным
-    private boolean throwCube() {
+    private boolean throwCube() throws Exception {
         int throwCube = 1 + (int) ( Math.random() * (6) );
+        if (throwCube > 6 || throwCube < 1) throw new Exception("The value of Cube should be from 1...6.");
             if (throwCube == 6 || throwCube == 5)
                 return true;
             
@@ -87,7 +89,7 @@ public class Essence {
     // Если Удар успешен, кубик больше не бросается, цикл for () завершается.
     // Если Удар успешен, здоровье защищавшегося Существа уменьшается на одно из значений параметра Урон атакующего Существа.
     // Выводится информация о совершении Удара и количестве нанесённого Урона.
-    public void kickEssence(Essence essenceDefensive, Essence essenceAttacking) {
+    public void kickEssence(Essence essenceDefensive, Essence essenceAttacking) throws Exception {
         if (checkHealthEssence(essenceAttacking) == true || checkHealthEssence(essenceDefensive) == true  ) {
             System.out.println("You'r fight is over! There is no one to kick.");
             return;

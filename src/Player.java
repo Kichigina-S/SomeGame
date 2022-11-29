@@ -20,7 +20,7 @@ public class Player extends Essence {
 
     // Установка значений параметрам Игрока, инициализация параметра максимального Здоровья
     // и параметра количества исцелений Игрока
-    public void setValuesToPlayer (Player testPlayer, int N, int M) {
+    public void setValuesToPlayer (Player testPlayer, int N, int M) throws Exception {
         super.attack = Essence.setAttackOrDefense();
         super.defense = Essence.setAttackOrDefense();
         super.health = Essence.setHealth(N);
