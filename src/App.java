@@ -9,7 +9,7 @@ public class App {
         testPlayer.setValuesToPlayer(testPlayer, N, M);
        
         testPlayer.printInfo(testPlayer);
-        System.out.println("\nmaxhealthy: " + testPlayer.maxHealthy);
+        System.out.println("\nmaxhealth: " + testPlayer.maxHealth);
 
         // Пример создания Монстра и вывод о нём информации для наглядности
         Monster testMonster = new Monster();
