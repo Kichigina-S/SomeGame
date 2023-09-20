@@ -1,3 +1,6 @@
+## My Telegram
+@kichSvetlana
+
 ## Some Game for Test Project
 
 This project was made for Heads and Hands school. <br>
@@ -20,7 +23,7 @@ Use method kickEssence(Essence essenceDefensive, Essence essenceAttacking) as yo
 If kick was successful you would see some sting in terminal.<br>
 Else you wouldn't.<br><br>
 
-Also you can heal your Player. BUT! Only three times.<br>
+Also you can heal your Player. BUT! Only four times.<br>
 So, if you wanna heal use method healPlayer(Player player).<br>
 
 ## The end

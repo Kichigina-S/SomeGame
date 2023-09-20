@@ -26,8 +26,8 @@ public class Essence {
 
     // Установка рандомного значения Атаки или Защиты Существа
     public static int setAttackOrDefense() throws Exception {
-        int parameterAttackOrDefense = 1 + (int) ( Math.random() * 20 );
-        if (parameterAttackOrDefense > 20 || parameterAttackOrDefense < 1) throw new Exception("The parameter of Attack or Defense should be from 1...20.");
+        int parameterAttackOrDefense = 1 + (int) ( Math.random() * 30 );
+        if (parameterAttackOrDefense > 30 || parameterAttackOrDefense < 1) throw new Exception("The parameter of Attack or Defense should be from 1...30.");
         return parameterAttackOrDefense;
     }
 

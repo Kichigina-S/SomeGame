@@ -37,9 +37,9 @@ public class Player extends Essence {
     public void healPlayer(Player player) {
         if (super.health == player.maxHealth)
         return;
-        if (super.health < player.maxHealth && player.countHeal < 3) {
-            super.health += (int) (player.maxHealth * 0.5); 
-            System.out.println("You heal Player with " + (int) (player.maxHealth * 0.5) + "hp.\n");
+        if (super.health < player.maxHealth && player.countHeal < 4) {
+            super.health += (int) (player.maxHealth * 0.3); 
+            System.out.println("You heal Player with " + (int) (player.maxHealth * 0.3) + "hp.\n");
             player.countHeal += 1;
 
             if (super.health > player.maxHealth)
