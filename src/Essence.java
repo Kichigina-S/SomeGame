@@ -1,27 +1,26 @@
-import java.util.Arrays;
-
-public class Essence {
+public abstract class Essence {
     protected int attack;
     protected int defense;
     protected int health;
     protected int[] damage;
 
-    public int getAttack() { return attack; }
-    public int getDefense() { return defense; }
-    public int getHealth() { return health; }
-    public int[] getDamage() { return damage; }
+    public static final int N = 46;
+    public static final int M = 28;
 
-    // Конструктор Существа
-    public Essence (int attack, int defense, int health, int[] damage) {
-        this.attack = attack;
-        this.defense = defense;
-        this.health = health;
-        this.damage = damage;
+    public int getAttack()   { return attack;  }
+    public int getDefense()  { return defense; }
+    public int getHealth()   { return health;  }
+    public int[] getDamage() { return damage;  }
+
+    public Essence () throws Exception {
+        this(setAttackOrDefense(), setAttackOrDefense(), setHealth(N), setDamage(M, N));
     }
 
-    // Дефолтный конструктор
-    public Essence () {
-
+    public Essence (int attack, int defense, int health, int[] damage) {
+        this.attack  = attack;
+        this.defense = defense;
+        this.health  = health;
+        this.damage  = damage;
     }
 
     // Установка рандомного значения Атаки или Защиты Существа
@@ -49,18 +48,8 @@ public class Essence {
         return arrayDamage;
     }
 
-    // Метод выполняет вывод инофрмации о Существе на экран
-    public void printInfo(Essence essence) {
-        System.out.println( "Some info about your essence: " +
-                            "\nAttack: " + essence.getAttack() + 
-                            "\nDefense: " + essence.getDefense() + 
-                            "\nHealth: " + essence.getHealth());
-
-        System.out.println("\nDamage: ");
-        String intArrayString = Arrays.toString(essence.getDamage());
-        System.out.print(intArrayString);
-        System.out.println("\n");
-    }
+    // Абстрактный метод для вывода инофрмации о Существе на экран
+    abstract String printInfo();
 
     // Метод выполняет бросок кубика, в случае если выпадает 6 или 5, возвращается true 
     // т.е. удар считается успешным
@@ -74,9 +63,9 @@ public class Essence {
     }
 
     // Метод выполняет проверку на положительное значение параметра Здоровья Существа
-    public boolean checkHealthEssence(Essence essence) {
+    public boolean isEssenceDead(Essence essence) {
         if (essence.health <= 0)
-        return true;
+            return true;
 
         return false;
     }
@@ -89,22 +78,25 @@ public class Essence {
     // Если Удар успешен, кубик больше не бросается, цикл for () завершается.
     // Если Удар успешен, здоровье защищавшегося Существа уменьшается на одно из значений параметра Урон атакующего Существа.
     // Выводится информация о совершении Удара и количестве нанесённого Урона.
-    public void kickEssence(Essence essenceDefensive, Essence essenceAttacking) throws Exception {
-        if (checkHealthEssence(essenceAttacking) == true || checkHealthEssence(essenceDefensive) == true  ) {
-            System.out.println("You'r fight is over! There is no one to kick.");
-            return;
+    String kickEssence(Essence essenceDefensive, Essence essenceAttacking) throws Exception {
+        String resultFight = "";
+        if (isEssenceDead(essenceAttacking) || isEssenceDead(essenceDefensive) ) {
+            resultFight = "You'r fight is over!";
+            return resultFight;
         }
 
-        int attackModificator = essenceAttacking.attack - essenceDefensive.defense + 1;
-        boolean success = true;
+        int attackModificator = Math.abs(essenceAttacking.attack - essenceDefensive.defense) + 1;
         
         for (int i = 0; i <= attackModificator; i++) {
-            if (success == throwCube()) {
+            if (throwCube()) {
                 int chooseDamage = 1 + (int) ( Math.random() * (essenceAttacking.damage.length) + 1 );
                 essenceDefensive.health = essenceDefensive.health - essenceAttacking.damage[chooseDamage];
                 i = attackModificator;
-                System.out.println("\nOh, no! Essence attacked you! You loose " + essenceAttacking.damage[chooseDamage] + " hp.\n");
+                resultFight = "<html>Oh, no! Essence attacked you!<br>You loose " + essenceAttacking.damage[chooseDamage] + " hp.</html>";
+                return resultFight;
             }
         }
+
+        return resultFight;
     }
 }

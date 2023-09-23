@@ -1,23 +1,26 @@
+import java.util.Arrays;
+
 public class Monster extends Essence {
-    public int attack;
-    public int defense;
-    public int health;
-    public int[] damage;
-    
-    // Конструктор Монстра наследованный от родительского класса Существа.
+
+    public Monster () throws Exception {
+    }
+
     public Monster (int attack, int defense, int health, int[] damage) {
         super(attack, defense, health, damage);
     }
 
-    public Monster () {
+    @Override
+    String printInfo() {
+        String infoAbout = "";
+        infoAbout = "<html>Some info about your monster: " +
+                            "<br>Attack: "  + getAttack() + 
+                            "<br>Defense: " + getDefense() + 
+                            "<br>Health: "  + getHealth();
 
-    }
+        infoAbout += "<br>Damage: ";
+        String intArrayString = Arrays.toString(getDamage());
+        infoAbout += intArrayString + "</html>";
 
-    // Установка значений параметрам Монстра
-    public void setValuesToMonster (Monster testMonster, int N, int M) throws Exception {
-        super.attack = Essence.setAttackOrDefense();
-        super.defense = Essence.setAttackOrDefense();
-        super.health = Essence.setHealth(N);
-        super.damage = Essence.setDamage(M, N);
+        return infoAbout;
     }
 }
